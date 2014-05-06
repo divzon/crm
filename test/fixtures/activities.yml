@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  customer_id: 1
+  start_time: 2014-05-06 17:45:36
+  end_time: 2014-05-06 17:45:36
+  feedback: MyText
+
+two:
+  customer_id: 1
+  start_time: 2014-05-06 17:45:36
+  end_time: 2014-05-06 17:45:36
+  feedback: MyText

@@ -1,0 +1,23 @@
+.row
+  .col-lg-6
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title Add New City
+      .panel-body
+        =form_tag("/admin/add_city", :class => "form-inline") do
+          .form-group
+            =text_field_tag :name, "", :placeholder => "City Name", :required => true, :class => "form-control"
+          =submit_tag "Add City", :class => "btn btn-primary"
+.row
+  .col-lg-9
+    %h3 List of Cities
+    %table.table.table-bordered.table-hover
+      %tr
+        %th Name
+        %th Total Customers
+        %th Action
+      -@cities.each do |city|
+        %tr
+          %td= city.name
+          %td= city.customers.count
+          %td= link_to "Edit", {:action => "edit_city", :id => city.id}, :class => "btn btn-info btn-sm"

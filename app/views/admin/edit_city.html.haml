@@ -1,0 +1,12 @@
+.row
+  .col-lg-6
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title Edit City
+      .panel-body
+        =form_tag("/admin/update_city", :class => "form-inline") do
+          .form-group
+            =text_field_tag :name, @city.name, :placeholder => "City Name", :required => true, :class => "form-control"
+          =hidden_field_tag :city_id, @city.id
+          =submit_tag "Update City", :class => "btn btn-primary"
+          =link_to "Back", {:action => "cities"}, :class => "btn btn-warning"

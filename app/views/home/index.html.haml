@@ -1,0 +1,21 @@
+.row
+  .col-md-6
+    %h2 User Login
+    =form_tag("/home/user_login") do
+      .form-group
+        %label User Name
+        =text_field_tag :name, "", :placeholder => "User Name", :required => true, :class => "form-control"
+      .form-group
+        %label Password
+        =password_field_tag :password, "", :placeholder => "Password", :required => true, :class => "form-control"
+      =submit_tag "Login", :class => "btn btn-default"
+  .col-md-6
+    %h2 Admin Login
+    =form_tag("/home/admin_login") do
+      .form-group
+        %label Admin Name
+        =text_field_tag :name, "", :placeholder => "Admin Name", :required => true, :class => "form-control"
+      .form-group
+        %label Password
+        =password_field_tag :password, "", :placeholder => "Password", :required => true, :class => "form-control"
+      =submit_tag "Login", :class => "btn btn-default"
