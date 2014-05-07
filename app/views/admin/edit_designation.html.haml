@@ -1,0 +1,12 @@
+.row
+  .col-lg-6
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title Edit Designation
+      .panel-body
+        =form_tag("/admin/update_designation", :class => "form-inline") do
+          .form-group
+            =text_field_tag :name, @designation.name, :placeholder => "Designation Name", :required => true, :class => "form-control"
+          =hidden_field_tag :designation_id, @designation.id
+          =submit_tag "Update Designation", :class => "btn btn-primary"
+          =link_to "Back", {:action => "designations"}, :class => "btn btn-warning"

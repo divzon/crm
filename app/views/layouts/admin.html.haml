@@ -24,12 +24,14 @@
         %a.navbar-brand(href="#") Crm
         .navbar-collapse.collapse.navbar-responsive-collapse
           %ul.nav.navbar-nav
-            %li{:class => ("active" if ["customers"].include?params[:action])}
+            %li{:class => ("active" if ["customers","edit_customer","search_customer"].include?params[:action])}
               = link_to "Customers", :action => "customers"
             %li{:class => ("active" if ["activities"].include?params[:action])}
               = link_to "Activities", :action => "activities"
-            %li{:class => ("active" if ["cities"].include?params[:action])}
+            %li{:class => ("active" if ["cities","edit_city"].include?params[:action])}
               = link_to "Cities", :action => "cities"
+            %li{:class => ("active" if ["designations","edit_designation"].include?params[:action])}
+              = link_to "Designations", :action => "designations"
           %ul.nav.navbar-nav.navbar-right
             %li= link_to "Logout", :action => "logout", :controller => "home"
               

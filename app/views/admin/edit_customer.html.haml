@@ -1,0 +1,25 @@
+.row
+  .col-lg-5
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title Edit Customer
+      .panel-body
+        =form_tag("/admin/update_customer") do
+          .form-group
+            %label Name
+            =text_field_tag :name, @customer.name, :placeholder => "Customer Name", :required => true, :class => "form-control"
+          .form-group
+            %label Email 
+            =email_field_tag :email, @customer.email, :placeholder => "Email", :class => "form-control"
+          .form-group
+            %label Designation
+            =select_tag :designation, options_from_collection_for_select(@designations, "id", "name", :selected => @customer.designation_id), :prompt => "Select Designation", :class => "form-control"  
+          .form-group
+            %label Contact Number
+            =text_field_tag :number, @customer.number, :placeholder => "Contact Number", :required => true, :class => "form-control"
+          .form-group
+            %label City
+            =select_tag :city, options_from_collection_for_select(@cities, "id", "name", :selected => @customer.city_id), :prompt => "Select City", :class => "form-control"
+          =hidden_field_tag :customer_id, @customer.id
+          =submit_tag "Update Customer", :class => "btn btn-primary"
+          =link_to "Back", {:action => "customers"}, :class => "btn btn-warning"
