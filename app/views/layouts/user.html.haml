@@ -21,11 +21,11 @@
           %span.icon-bar
           %span.icon-bar
           %span.icon-bar
-        %a.navbar-brand(href="#") Crm
+        %a.navbar-brand(href="/user/index") Crm
         .navbar-collapse.collapse.navbar-responsive-collapse
           %ul.nav.navbar-nav
-            %li
-              %a{:href=>"#"} User Links
+            %li{:class => ("active" if ["customers","search_customer","call_customer"].include?params[:action])}
+              = link_to "Customers", :action => "customers"
           %ul.nav.navbar-nav.navbar-right
             %li= link_to "Logout", :action => "logout", :controller => "home"
 

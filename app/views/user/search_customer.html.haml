@@ -1,0 +1,39 @@
+.row
+  .col-lg-9
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title Search Customer's
+      .panel-body
+        =form_tag("/user/search_customer", :class => "form-inline") do
+          .form-group
+            =text_field_tag :name, @name, :placeholder => "Customer Name", :class => "form-control"
+          .form-group
+            =email_field_tag :email, @email, :placeholder => "Email", :class => "form-control"
+          .form-group
+            =select_tag :designation, options_from_collection_for_select(@designations, "id", "name", @designation), :prompt => "Select Designation", :class => "form-control"  
+          %br
+          %br
+          .form-group
+            =text_field_tag :number, @number, :placeholder => "Contact Number", :class => "form-control"
+          .form-group
+            =select_tag :city, options_from_collection_for_select(@cities, "id", "name", @city), :prompt => "Select City", :class => "form-control"
+          =submit_tag "Search Customer's", :class => "btn btn-primary"
+.row
+  .col-lg-9
+    %h3 List of Customers
+    %table.table.table-bordered.table-hover
+      %tr
+        %th Name
+        %th Contact Number
+        %th Email
+        %th Designation
+        %th City
+        %th Action
+      -@customers.each do |customer|
+        %tr
+          %td= customer.name
+          %td= customer.number
+          %td= customer.email
+          %td= customer.designation.name rescue nil
+          %td= customer.city.name rescue nil
+          %td= link_to "Call", {:action => "call_customer", :id => customer.id}, :class => "btn btn-info btn-sm"

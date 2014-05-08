@@ -22,3 +22,23 @@ function closeAlert() {
     $('.alert').alert('close');
 }
 
+function start_time() {
+	$.post('/user/get_time/', {
+	  id: "start"
+	}, function(data) {
+	  	$("#start_time").val(data);
+	  	$(".start_time").text("Call Started");
+		$(".start_time").attr("disabled","disabled");
+	  	$(".end_time").removeAttr("disabled");
+	});
+}
+
+function end_time() {
+	$.post('/user/get_time/', {
+	  id: "end"
+	}, function(data) {
+	  	$("#end_time").val(data);
+	  	$(".end_time").text("Call Ended");
+		$(".end_time").attr("disabled","disabled");
+	});
+}

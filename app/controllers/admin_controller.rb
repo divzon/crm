@@ -5,6 +5,8 @@ class AdminController < ApplicationController
     @customer = Customer.count
     @city = City.count
     @designation = Designation.count
+    @activities = Activity.where("start_time >= ? and end_time <= ?",Time.now.beginning_of_day-1.day, Time.now.end_of_day-1.day).count
+    @today_activities = Activity.where("start_time >= ? and end_time <= ?",Time.now.beginning_of_day, Time.now.end_of_day).count
   end
   
   def cities
@@ -142,6 +144,10 @@ class AdminController < ApplicationController
         @designations = Designation.order 'name'
       end
     end
+  end
+  
+  def activities
+    @activities = Activity.where("start_time >= ? and end_time <= ?",Time.now.beginning_of_day-1.day, Time.now.end_of_day-1.day)
   end
   
   private
