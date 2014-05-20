@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  customer_id: 1
+  description: MyText
+  due_date: 2014-05-20
+  status: MyString
+  payment_status: MyString
+
+two:
+  customer_id: 1
+  description: MyText
+  due_date: 2014-05-20
+  status: MyString
+  payment_status: MyString

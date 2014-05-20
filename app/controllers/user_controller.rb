@@ -62,6 +62,28 @@ class UserController < ApplicationController
     end
   end
   
+  def add_job
+    @customer = Customer.find params[:id]
+  end
+  
+  def save_job
+    @customer = Customer.find params[:customer_id]
+    job = Job.new
+    job.description = params[:description]
+    job.due_date = params[:due_date]
+    job.status = params[:status]
+    job.payment_status = params[:payment_status]
+    job.customer = @customer
+    job.save
+    flash[:notice] = "Job added successfully for #{@customer.name}."
+    redirect_to :action => "customers"
+  end
+  
+  def view_jobs
+    @customer = Customer.find params[:id]
+    @jobs = @customer.jobs.order 'due_date DESC'
+  end
+  
   private
   
   def admin_check

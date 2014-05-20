@@ -147,7 +147,20 @@ class AdminController < ApplicationController
   end
   
   def activities
-    @activities = Activity.where("start_time >= ? and end_time <= ?",Time.now.beginning_of_day-1.day, Time.now.end_of_day-1.day)
+    @customers = Customer.order 'name'
+    if params[:from].blank?
+      @activities = Activity.where("start_time >= ? and end_time <= ?",Time.now.beginning_of_day-1.day, Time.now.end_of_day-1.day)
+    else
+      @from = params[:from]
+      @to = params[:to]
+      if params[:customer].blank?
+        @activities = Activity.where("start_time >= ? and end_time <= ?",Time.parse(@from), Time.parse(@to))
+      else
+        @cust = Customer.find params[:customer]
+        @customer = @cust.id
+        @activities = @cust.activities.where("start_time >= ? and end_time <= ?",Time.parse(@from), Time.parse(@to))
+      end
+    end
   end
   
   private

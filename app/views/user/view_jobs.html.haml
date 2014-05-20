@@ -1,0 +1,16 @@
+.row
+  .col-lg-9
+    %h3 List of Jobs for '#{@customer.name}'
+    %table.table.table-bordered.table-hover
+      %tr
+        %th Description
+        %th Due Date
+        %th Status
+        %th Payment Status
+      -@jobs.each do |job|
+        %tr
+          %td= job.description
+          %td= job.due_date
+          %td= job.status
+          %td= job.payment_status
+          

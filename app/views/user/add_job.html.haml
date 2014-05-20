@@ -1,0 +1,22 @@
+.row
+  .col-lg-5
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title Add Job of Customer - '#{@customer.name}'
+      .panel-body
+        =form_tag("/user/save_job") do
+          .form-group
+            %label Description
+            =text_area_tag :description, "", :placeholder => "Description of Job", :rows => 5, :required => true, :class => "form-control"
+          .form-group
+            %label Due Date
+            =text_field_tag :due_date, "", :placeholder => "Due Date", :required => true, :class => "form-control datepicker"
+          .form-group
+            %label Status
+            =select_tag :status, options_for_select(["New","In Progress","Completed"]), :required => true, :prompt => "Select Status", :class => "form-control"
+          .form-group
+            %label Payment Status
+            =select_tag :payment_status, options_for_select(["New","In Progress","Completed"]), :required => true, :prompt => "Select Payment Status", :class => "form-control"
+          =hidden_field_tag :customer_id, @customer.id
+          =submit_tag "Add Job", :class => "btn btn-primary"
+          =link_to "Back", {:action => "customers"}, :class => "btn btn-warning"

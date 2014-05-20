@@ -1,3 +1,31 @@
 .row
   .col-lg-9
-    %h2 Coming Soon... !!!
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title Search Activitie's
+      .panel-body
+        =form_tag("/admin/activities", :class => "form-inline") do
+          .form-group
+            =text_field_tag :from, @from, :placeholder => "From Date", :class => "form-control datepicker"
+          .form-group
+            =text_field_tag :to, @to, :placeholder => "To Date", :class => "form-control datepicker"
+          .form-group
+            =select_tag :customer, options_from_collection_for_select(@customers, "id", "name", @customer), :prompt => "Select Customer", :class => "form-control"  
+          =submit_tag "Search Activitie's", :class => "btn btn-primary"
+.row
+  .col-lg-9
+    %h3 List of Activities
+    %table.table.table-bordered.table-hover
+      %tr
+        %th Name
+        %th Call Started @
+        %th Call Ended @
+        %th Time Spent in min
+        %th Feedback
+      -@activities.each do |activity|
+        %tr
+          %td= activity.customer.name
+          %td= activity.start_time
+          %td= activity.end_time
+          %td= ((activity.end_time - activity.start_time)/60).round
+          %td= activity.feedback
